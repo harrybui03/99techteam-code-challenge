@@ -26,7 +26,7 @@ You can easily spin up the application using Docker and Docker Compose.
     docker-compose up
     ```
 
-4. The application will be available at [http://localhost:8000/todos](http://localhost:8000/todos).
+4. The application will be available at [http://localhost:3000/todos](http://localhost:3000/todos).
 
 ## Application Features
 
@@ -48,12 +48,6 @@ You can easily spin up the application using Docker and Docker Compose.
 
 ![img.png](imgs/detail.png)
 
-
-## Testing the Application
-
-You can test the application by accessing the following URL in your browser:
-
-- **Todos List**: [http://localhost:8000/todos](http://localhost:8000/todos)
 
 ## Stack
 
