@@ -127,9 +127,8 @@ The Scoreboard API Service manages and updates user scores in real-time on the s
     -   `updated_at`
 
 ## High-Level Design
-
+    ![img.png](img.png)
 ### 1. **User Views the Scoreboard**
-
 -   The client creates a WebSocket connection to the load balancer for real-time communication.
 -   The load balancer delegates the client’s request to the closest data center.
 -   The server queries the cache server to display the scoreboard.
