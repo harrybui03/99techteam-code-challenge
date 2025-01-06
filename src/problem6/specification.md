@@ -104,8 +104,9 @@ The Scoreboard API Service manages and updates user scores in real-time on the s
 
 ## Database Design
 
--   **Users Table**:
+![database_design.png](imgs%2Fdatabase_design.png)
 
+-   **Users Table**:
     -   `user_id` (Primary Key)
     -   `username`
     -   `password`
@@ -127,7 +128,9 @@ The Scoreboard API Service manages and updates user scores in real-time on the s
     -   `updated_at`
 
 ## High-Level Design
-    ![img.png](img.png)
+
+![img.png](imgs%2Fimg.png)
+
 ### 1. **User Views the Scoreboard**
 -   The client creates a WebSocket connection to the load balancer for real-time communication.
 -   The load balancer delegates the client’s request to the closest data center.

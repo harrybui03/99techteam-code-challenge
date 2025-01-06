@@ -4,23 +4,129 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            padding: 1rem;
+            background-color: #4CAF50;
+            color: white;
+            margin: 0;
+        }
+        .filters {
+            text-align: center;
+            margin: 1rem 0;
+        }
+        select {
+            padding: 0.5rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+        a {
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 2rem auto;
+            max-width: 600px;
+        }
+        li {
+            background: white;
+            margin: 0.5rem 0;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        li:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .actions {
+            display: flex;
+            gap: 1rem;
+        }
+        button {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        button:hover {
+            background-color: #c0392b;
+        }
+        .create-link {
+            display: block;
+            margin: 2rem auto;
+            text-align: center;
+            max-width: 200px;
+            padding: 0.5rem 1rem;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        .create-link:hover {
+            background-color: #45a049;
+        }
+        form {
+            display: inline;
+        }
+    </style>
 </head>
 <body>
-    <h1>Todo List</h1>
-    <a href="/todos/create">Create New Todo</a>
-    
-    <ul>
-        <% todos.forEach(todo => { %>
-            <li>
-                <%= todo.title %> - <%= todo.isCompleted ? 'Completed' : 'Pending' %>
-                <a href="/todos/<%= todo.id %>">View</a> | 
-                <a href="/todos/edit/<%= todo.id %>">Edit</a> |
-                <form action="/todos/<%= todo.id %>" method="POST" style="display:inline;">
-                    <input type="hidden" name="_method" value="DELETE">
+<h1>Todo List</h1>
+
+<!-- Filter Section -->
+<div class="filters">
+    <form action="/todos" method="GET">
+        <label for="filter">Filter:</label>
+        <select id="filter" name="filter" onchange="this.form.submit()">
+            <option value="all" <%= filterStatus === 'all' || !filterStatus ? 'selected' : '' %>>All</option>
+            <option value="completed" <%= filterStatus === 'completed' ? 'selected' : '' %>>Completed</option>
+            <option value="pending" <%= filterStatus === 'pending' ? 'selected' : '' %>>Pending</option>
+            <option value="" <%= filterStatus === 'no' ? 'selected' : '' %>>No Filter</option>
+        </select>
+    </form>
+</div>
+
+
+<a href="/todos/create" class="create-link">Create New Todo</a>
+
+<ul>
+    <% todos.forEach(todo => { %>
+        <li>
+            <div>
+                <strong><%= todo.title %></strong> -
+                <span><%= todo.isCompleted ? 'Completed' : 'Pending' %></span>
+            </div>
+            <div class="actions">
+                <a href="/todos/<%= todo.id %>">View</a>
+                <a href="/todos/edit/<%= todo.id %>">Edit</a>
+                <form action="/todos/<%= todo.id %>?_method=DELETE" method="POST">
                     <button type="submit">Delete</button>
                 </form>
-            </li>
-        <% }) %>
-    </ul>
+            </div>
+        </li>
+    <% }) %>
+</ul>
 </body>
 </html>

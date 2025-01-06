@@ -31,10 +31,23 @@ You can easily spin up the application using Docker and Docker Compose.
 ## Application Features
 
 - **Create Todo**: Add a new todo item.
+
+![img.png](imgs/create.png)
+
 - **Update Todo**: Edit the details of an existing todo.
+
+![img.png](imgs/update.png)
+
 - **Delete Todo**: Remove a todo item.
+
 - **Get List of Todos**: Retrieve a list of todos with optional filters.
+
+![img.png](imgs/lists.png)
+
 - **Get Todo Details**: View details of a specific todo by its ID.
+
+![img.png](imgs/detail.png)
+
 
 ## Testing the Application
 

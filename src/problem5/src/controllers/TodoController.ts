@@ -19,10 +19,12 @@ export const createTodo = async (req: Request, res: Response) => {
 export const updateTodo = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
-        const todoInput: UpdateTodoRequest = req.body;
+        const todoInput = req.body;
         if (todoInput == null) {
             throw new Error("Invalid input.");
         }
+
+        todoInput.isCompleted = todoInput.isCompleted === 'on';
 
         const idNumber: number = parseInt(id);
         const todo = await global.todoService.update(idNumber, todoInput);
@@ -55,7 +57,6 @@ export const getTodo = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
         const idNumber: number = parseInt(id);
-
         const todo = await global.todoService.getById(idNumber);
         // Render todo details page with the retrieved data
         res.render('todoDetails', { todo });
@@ -68,15 +69,42 @@ export const getTodo = async (req: Request, res: Response) => {
 
 export const getTodos = async (req: Request, res: Response) => {
     try {
-        const { isCompleted } = req.query;
+        const { filter } = req.query;
+        // Determine the filter based on the `filterStatus` query parameter
+        const filterStatus =
+            filter === 'completed' ? true :
+                filter === 'pending' ? false :
+                    undefined;
+        console.log(filter , filterStatus);
 
-        const filter = isCompleted === 'true' ? true : isCompleted === 'false' ? false : undefined;
-        const todos = await global.todoService.list(filter);
+        // Fetch todos from the service with the appropriate filter
+        const todos = await global.todoService.list(filterStatus);
 
-        // Render the list of todos
-        res.render('todoList', { todos });
+        // Render the list of todos, passing the filterStatus for the UI
+        res.render('todoList', { todos, filterStatus });
     } catch (err) {
         res.status(500).render('error', { message: 'An error occurred while getting todos.' });
     }
 };
 
+
+export const getCreateTodo = async (req: Request, res: Response) => {
+    try {
+        // Render the create todo page
+        res.render('createTodo');
+    } catch (err) {
+        res.status(500).render('error', { message: 'An error occurred while getting create todo page.' });
+    }
+}
+
+export const getUpdateTodo = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params;
+        const idNumber: number = parseInt(id);
+        const todo = await global.todoService.getById(idNumber);
+        // Render the create todo page
+        res.render('updateTodo' , {todo});
+    } catch (err) {
+        res.status(500).render('error', { message: 'An error occurred while getting create todo page.' });
+    }
+}

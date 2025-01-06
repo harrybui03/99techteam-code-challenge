@@ -4,12 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+        h1 {
+            color: #4CAF50;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        p {
+            font-size: 1.1rem;
+            margin: 0.5rem 0;
+        }
+        strong {
+            font-weight: bold;
+            color: #555;
+        }
+        .todo-details {
+            background-color: white;
+            padding: 2rem;
+            margin: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+        }
+        a {
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            background-color: #f1f1f1;
+        }
+        a:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
 </head>
 <body>
+<div class="todo-details">
     <h1>Todo Details</h1>
     <p><strong>Title:</strong> <%= todo.title %></p>
     <p><strong>Description:</strong> <%= todo.description %></p>
     <p><strong>Status:</strong> <%= todo.isCompleted ? 'Completed' : 'Pending' %></p>
     <a href="/todos">Back to Todo List</a>
+</div>
 </body>
 </html>

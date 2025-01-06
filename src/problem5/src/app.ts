@@ -1,5 +1,4 @@
 import express from "express";
-// import expressLayouts from "express-ejs-layouts";
 import path from "path";
 import { AppDataSource } from "./database/DataSource";
 import bodyParser from "body-parser";
@@ -14,8 +13,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 initDependencies();
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "../src/views"));
 app.use(methodOverride("_method"));
+app.set("views", path.join(__dirname, "../src/views"));
 
 app.use("/todos", router);
 
