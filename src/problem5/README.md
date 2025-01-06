@@ -50,3 +50,16 @@ You can test the application by accessing the following URL in your browser:
 - **EJS**: Embedded JavaScript templating engine for the UI.
 - **SQLite**: Lightweight SQL database for data storage.
 - **TypeORM**: ORM to interact with SQLite.
+
+## Folder Structure:
+
+Here’s a breakdown of the folder structure in the code:
+
+-   **controllers**: Contains functions that handle incoming requests and interact with services to process business logic.
+-   **database**: This folder holds the database configuration and connection settings.
+-   **entities**: Defines the data models (entities) for the database, such as the `Todo` entity, using TypeORM decorators.
+-   **global**: Contains initialize all dependency.
+-   **routers**: Contains the routes for handling HTTP requests and connecting them to the appropriate controller methods.
+-   **schema**: Defines the structure of the database tables using TypeORM and SQLite.
+-   **services**: Contains the business logic for handling todos, such as creating, updating, and deleting todos.
+-   **views**: Holds the EJS templates for rendering the UI.
