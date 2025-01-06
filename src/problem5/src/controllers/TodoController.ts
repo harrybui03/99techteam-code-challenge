@@ -75,8 +75,6 @@ export const getTodos = async (req: Request, res: Response) => {
             filter === 'completed' ? true :
                 filter === 'pending' ? false :
                     undefined;
-        console.log(filter , filterStatus);
-
         // Fetch todos from the service with the appropriate filter
         const todos = await global.todoService.list(filterStatus);
 
